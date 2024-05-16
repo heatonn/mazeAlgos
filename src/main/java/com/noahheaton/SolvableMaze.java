@@ -3,7 +3,7 @@ package com.noahheaton;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
-
+@SuppressWarnings("ALL")
 public class SolvableMaze{
   private int[][] maze;
   private Maze m;

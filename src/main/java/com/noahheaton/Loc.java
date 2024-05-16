@@ -11,6 +11,7 @@ public class Loc {
     @Override
     public boolean equals(Object obj){
         if (obj instanceof Loc) {
+            @SuppressWarnings("PatternVariableCanBeUsed")
             Loc other = (Loc) obj;
             return this.x == other.x && this.y == other.y;
         }

@@ -5,11 +5,14 @@ import java.util.Stack;
 import java.util.Random;
 import java.util.Arrays;
 
+@SuppressWarnings("ALL")
 public class Maze {
     private int dim;
     private int[][] maze;
     private Random rand = new Random();
     private Stack<Loc> stack = new Stack<>();
+    private Loc start;
+    private Loc end;
 
     /*
      * █ (Wall)
@@ -23,6 +26,7 @@ public class Maze {
         this.maze = new int[dim][dim];
 
     }
+    @SuppressWarnings("unused")
     public void printMaze(){
         System.out.println(Arrays.deepToString(maze));
     }
@@ -40,6 +44,8 @@ public class Maze {
         SolvableMaze s = new SolvableMaze(this);
         s.solveMaze();
         this.addGoal(s.getStart(), s.getEnd());
+
+
     }
 
     public boolean isValidLoc(Loc loc) {
@@ -91,8 +97,9 @@ public class Maze {
             for(int j : i){
                 ;
                 if(j == 0) gar.append("X");
-                else if (j == 2) gar.append("▲");
-                else if (j == 3) gar.append("▲");
+                else if (j == 2) gar.append("☻");
+                else if (j == 3) gar.append("☻");
+                else if (j == 5) gar.append(ConsoleColors.PURPLE + "X" + ConsoleColors.RED);
                 else gar.append(" ");
                 gar.append("  ");
             }
@@ -104,9 +111,20 @@ public class Maze {
     public int[][] getMaze(){
         return maze;
     }
+    public void setMaze(int[][] e){
+        this.maze = e;
+    }
     public void addGoal(Loc start, Loc end){
         maze[start.y][start.x] = 2;
         maze[end.y][end.x] = 3;
+        this.start = start;
+        this.end = end;
+    }
+    public Loc getStart(){
+        return start;
+    }
+    public Loc getEnd(){
+        return end;
     }
 
 
