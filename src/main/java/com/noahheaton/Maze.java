@@ -90,7 +90,7 @@ public class Maze {
             gar.append("|  ");
             for(int j : i){
                 ;
-                if(j == 0) gar.append("█");
+                if(j == 0) gar.append("X");
                 else if (j == 2) gar.append("▲");
                 else if (j == 3) gar.append("▲");
                 else gar.append(" ");

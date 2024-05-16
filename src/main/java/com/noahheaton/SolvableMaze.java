@@ -62,13 +62,13 @@ public class SolvableMaze{
       Loc end = getRandomEdge();
       boolean[][] visited = new boolean[maze.length][maze.length];
       if (bfs(start, end, maze, visited) && !start.equals(end)){
-          System.out.println("com.noahheaton.Maze is solvable");
+          System.out.println("Maze is solvable");
           System.out.println("Start: " + start.y + ", " + start.x);
           this.start = new Loc(start.x, start.y);
           System.out.println("End: " + end.y + ", " + end.x);
           this.end = new Loc(end.x, end.y);
         } else {
-            System.out.println("com.noahheaton.Maze is not solvable");
+            System.out.println("Maze is not solvable");
             System.out.println("Start: " + start.y + ", " + start.x);
             System.out.println("End: " + end.y + ", " + end.x);
             solveMaze();
