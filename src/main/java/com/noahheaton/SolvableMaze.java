@@ -1,9 +1,9 @@
-import java.util.ArrayList;
+package com.noahheaton;
+
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Random;
-import java.util.Stack;
+
 public class SolvableMaze{
   private int[][] maze;
   private Maze m;
@@ -62,13 +62,13 @@ public class SolvableMaze{
       Loc end = getRandomEdge();
       boolean[][] visited = new boolean[maze.length][maze.length];
       if (bfs(start, end, maze, visited) && !start.equals(end)){
-          System.out.println("Maze is solvable");
+          System.out.println("com.noahheaton.Maze is solvable");
           System.out.println("Start: " + start.y + ", " + start.x);
           this.start = new Loc(start.x, start.y);
           System.out.println("End: " + end.y + ", " + end.x);
           this.end = new Loc(end.x, end.y);
         } else {
-            System.out.println("Maze is not solvable");
+            System.out.println("com.noahheaton.Maze is not solvable");
             System.out.println("Start: " + start.y + ", " + start.x);
             System.out.println("End: " + end.y + ", " + end.x);
             solveMaze();

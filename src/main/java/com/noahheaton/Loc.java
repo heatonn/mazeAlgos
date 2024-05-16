@@ -1,3 +1,5 @@
+package com.noahheaton;
+
 public class Loc {
     public int x;
     public int y;
