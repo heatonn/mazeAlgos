@@ -12,28 +12,6 @@ public class ConsoleColors {
     public static final String PURPLE = "\033[0;35m";  // PURPLE
     public static final String CYAN = "\033[0;36m";    // CYAN
     public static final String WHITE = "\033[0;37m";   // WHITE
-    public static String getColor(int n){
-        switch(n){
-            case 0:
-                return ConsoleColors.BLACK;
-            case 1:
-                return ConsoleColors.WHITE;
-            case 2:
-                return ConsoleColors.RED;
-            case 3:
-                return ConsoleColors.GREEN;
-            case 4:
-                return ConsoleColors.YELLOW;
-            case 5:
-                return ConsoleColors.BLUE;
-            case 6:
-                return ConsoleColors.PURPLE;
-            case 7:
-                return ConsoleColors.CYAN;
-            default:
-                return ConsoleColors.WHITE;
-        }
-    }
 
     // Bold
     public static final String BLACK_BOLD = "\033[1;30m";  // BLACK

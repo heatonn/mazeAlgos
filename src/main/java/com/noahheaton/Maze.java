@@ -95,12 +95,12 @@ public class Maze {
         for(int[] i : maze){
             gar.append("|  ");
             for(int j : i){
-
+                ;
                 if(j == 0) gar.append("X");
                 else if (j == 2) gar.append("☻");
                 else if (j == 3) gar.append("☻");
-                else if (j == 1)gar.append(" ");
-                else gar.append(ConsoleColors.getColor(j) + "O" + ConsoleColors.RED);
+                else if (j == 5) gar.append(ConsoleColors.PURPLE + "X" + ConsoleColors.RED);
+                else gar.append(" ");
                 gar.append("  ");
             }
             gar.append("|");
