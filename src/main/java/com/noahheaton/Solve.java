@@ -9,6 +9,7 @@ public class Solve {
     private Loc end;
     private boolean[][] visited;
     private Map<Loc, Loc> parent;
+    private int moves;
 
     public Solve(Maze maze, Loc start, Loc end) {
         this.maze = maze;
@@ -17,8 +18,11 @@ public class Solve {
         this.end = end;
         this.visited = new boolean[maze.getMaze().length][maze.getMaze().length];
         this.parent = new HashMap<>();
+        moves = 0;
     }
-
+    public int getMoves(){
+        return moves;
+    }
     public void setMaze() {
         maze.setMaze(mazeArr);
     }
@@ -38,11 +42,13 @@ public class Solve {
 
             // check neighbors
             for (Loc neighbor : maze.findNeighbors(current)) {
+
                 if (!visited[neighbor.y][neighbor.x] && (maze.getMaze()[neighbor.y][neighbor.x] == 1 || maze.getMaze()[neighbor.y][neighbor.x] == 3)) {
                 q.offer(neighbor);
         // Skip if neighbor is the end location
                 if (!neighbor.equals(end)) {
                  mazeArr[neighbor.y][neighbor.x] = 5; // mark as visited
+                    moves++;
               }
         visited[neighbor.y][neighbor.x] = true;
         parent.put(neighbor, current); // store parent
@@ -67,11 +73,14 @@ public class Solve {
 
             // check neighbors
             for (Loc neighbor : maze.findNeighbors(current)) {
+
                 if (!visited[neighbor.y][neighbor.x] && (maze.getMaze()[neighbor.y][neighbor.x] == 1 || maze.getMaze()[neighbor.y][neighbor.x] == 3)) {
                     q.push(neighbor);
                     // Skip if neighbor is the end location
                     if (!neighbor.equals(end)) {
-                        mazeArr[neighbor.y][neighbor.x] = 5; // mark as visited
+                        mazeArr[neighbor.y][neighbor.x] = 5;
+                        moves++;
+                        // mark as visited
                     }
                     visited[neighbor.y][neighbor.x] = true;
                     parent.put(neighbor, current); // store parent

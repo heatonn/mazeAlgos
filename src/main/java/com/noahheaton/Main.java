@@ -24,6 +24,7 @@ public class Main {
             input = kb.next();
             if (input.equalsIgnoreCase("y")) {
                 System.out.println("SOLVED MAZE\n" + maze.getFancyMaze());
+                System.out.println("Moves: " + sol.getMoves() + "\n");
             }
         } while (!input.equalsIgnoreCase("y") && !input.equalsIgnoreCase("n"));
 
