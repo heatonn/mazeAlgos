@@ -8,12 +8,12 @@ public class Loc {
         this.y = y;
     }
 
-    @Override
-    public boolean equals(Object obj){
+
+    public boolean equals(Loc obj){
         if (obj instanceof Loc) {
-            @SuppressWarnings("PatternVariableCanBeUsed")
-            Loc other = (Loc) obj;
-            return this.x == other.x && this.y == other.y;
+
+
+            return this.x == obj.x && this.y == obj.y;
         }
         return false;
     }
