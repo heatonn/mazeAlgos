@@ -29,9 +29,7 @@ public class Maze {
 
     }
     @SuppressWarnings("unused")
-    public void printMaze(){
-        System.out.println(Arrays.deepToString(maze));
-    }
+    public void printMaze(){System.out.println(Arrays.deepToString(maze));}
     public void generateMaze(){
         stack.push(new Loc(0,0));
         while (!stack.empty()){
