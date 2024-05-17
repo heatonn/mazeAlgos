@@ -46,11 +46,38 @@ public class Solve {
               }
         visited[neighbor.y][neighbor.x] = true;
         parent.put(neighbor, current); // store parent
-    }
-}
-
+         }
         }
+        }
+        return false;
+    }
 
+    public boolean dfs(Loc start, Loc end, boolean[][] visited) {
+        Stack<Loc> q = new Stack<>();
+        q.push(start);
+        visited[start.y][start.x] = true;
+
+        while (!q.isEmpty()) {
+            Loc current = q.pop();
+            if (current.equals(end)) {
+
+                highlightPath(current);
+                return true;
+            }
+
+            // check neighbors
+            for (Loc neighbor : maze.findNeighbors(current)) {
+                if (!visited[neighbor.y][neighbor.x] && (maze.getMaze()[neighbor.y][neighbor.x] == 1 || maze.getMaze()[neighbor.y][neighbor.x] == 3)) {
+                    q.push(neighbor);
+                    // Skip if neighbor is the end location
+                    if (!neighbor.equals(end)) {
+                        mazeArr[neighbor.y][neighbor.x] = 5; // mark as visited
+                    }
+                    visited[neighbor.y][neighbor.x] = true;
+                    parent.put(neighbor, current); // store parent
+                }
+            }
+        }
         return false;
     }
 
