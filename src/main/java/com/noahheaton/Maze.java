@@ -90,21 +90,26 @@ public class Maze {
         }
         return gar.toString();
     }
-    public String getFancyMaze(){
+    public String getFancyMaze() {
         StringBuilder gar = new StringBuilder();
-        for(int[] i : maze){
-            gar.append("|  ");
-            for(int j : i){
-                ;
-                if(j == 0) gar.append("X");
-                else if (j == 2) gar.append("☻");
-                else if (j == 3) gar.append("☻");
-                else if (j == 5) gar.append(ConsoleColors.PURPLE + "X" + ConsoleColors.RED);
-                else gar.append(" ");
-                gar.append("  ");
+        for (int[] i : maze) {
+            gar.append("| ");
+            for (int j : i) {
+                if (j == 0) {
+                    gar.append("X "); // Add an extra space after 'X'
+                } else if (j == 2) {
+                    gar.append("@ "); // Add an extra space after '?'
+                } else if (j == 3) {
+                    gar.append("@ "); // Add an extra space after '?'
+                } else if (j == 5) {
+                    gar.append(ConsoleColors.PURPLE + "X" + ConsoleColors.RED + " "); // Add an extra space after colored 'X'
+                } else if (j == 6) {
+                    gar.append(ConsoleColors.GREEN + "X" + ConsoleColors.RED + " "); // Add an extra space after colored 'X'
+                } else {
+                    gar.append("  "); // Add two spaces for empty cells
+                }
             }
-            gar.append("|");
-            gar.append("\n");
+            gar.append("|\n"); // Add a space before the vertical bar
         }
         return gar.toString();
     }
