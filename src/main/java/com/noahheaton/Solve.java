@@ -37,12 +37,15 @@ public class Solve{
             }
 
             // check neighbors
+            int count = 0;
             for (Loc neighbor : maze.findNeighbors(current)) {
+
                 if (!visited[neighbor.y][neighbor.x] && maze.getMaze()[neighbor.y][neighbor.x] == 1) {
                     q.offer(neighbor);
-                    mazeArr[neighbor.y][neighbor.x] = 5;
+                    mazeArr[neighbor.y][neighbor.x] = (count % 7) + 4;
                     visited[neighbor.y][neighbor.x] = true;
                 }
+                count++;
             }
         }
         return false;
