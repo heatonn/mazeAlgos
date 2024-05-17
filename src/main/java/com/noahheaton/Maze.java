@@ -9,6 +9,7 @@ import java.util.Arrays;
 public class Maze {
     private int dim;
     private int[][] maze;
+    private int[][] rawMaze;
     private Random rand = new Random();
     private Stack<Loc> stack = new Stack<>();
     private Loc start;
@@ -24,6 +25,7 @@ public class Maze {
     public Maze(int dim) {
         this.dim = dim;
         this.maze = new int[dim][dim];
+        this.rawMaze = new int[dim][dim];
 
     }
     @SuppressWarnings("unused")
@@ -37,6 +39,7 @@ public class Maze {
             if(isValidLoc(next)){
 
                 maze[next.y][next.x] = 1;
+                rawMaze[next.y][next.x] = 1;
                 ArrayList<Loc> neighbors = findNeighbors(next);
                 rndmLocAdd(neighbors);
             }
@@ -44,6 +47,7 @@ public class Maze {
         SolvableMaze s = new SolvableMaze(this);
         s.solveMaze();
         this.addGoal(s.getStart(), s.getEnd());
+
 
 
     }
@@ -83,10 +87,51 @@ public class Maze {
             stack.push(locs.remove(targetIndex));
         }
     }
-    public String getRawMaze(){
+    public String getUnsolvedMaze(){
         StringBuilder gar = new StringBuilder();
-        for(int[] i : maze){
+        for(int[] i : rawMaze){
             gar.append(Arrays.toString(i) + "\n" );
+        }
+        return gar.toString();
+    }
+
+    public String getUnsolvedFancyMaze() {
+        StringBuilder gar = new StringBuilder();
+        for (int[] i : rawMaze) {
+            gar.append("| ");
+            for (int j : i) {
+                if (j == 0) {
+                    gar.append("X "); // Add an extra space after 'X'
+                } else if (j == 2) {
+                    gar.append("@ "); // Add an extra space after '?'
+                } else if (j == 3) {
+                    gar.append("@ "); // Add an extra space after '?'
+                } else {
+                    gar.append("  "); // Add two spaces for empty cells
+                }
+            }
+            gar.append("|\n"); // Add a space before the vertical bar
+        }
+        return gar.toString();
+    }
+    public String getSolvedMaze() {
+        StringBuilder gar = new StringBuilder();
+        for (int[] i : maze) {
+            gar.append("| ");
+            for (int j : i) {
+                if (j == 0) {
+                    gar.append("X  "); // Add an extra space after 'X'
+                } else if (j == 2) {
+                    gar.append("@  "); // Add an extra space after '?'
+                } else if (j == 3) {
+                    gar.append("@  "); // Add an extra space after '?'
+                } else if (j == 6) {
+                    gar.append(ConsoleColors.GREEN + "X " + ConsoleColors.RED + " "); // Add an extra space after colored 'X'
+                } else {
+                    gar.append("   "); // Add two spaces for empty cells
+                }
+            }
+            gar.append("|\n"); // Add a space before the vertical bar
         }
         return gar.toString();
     }
@@ -117,11 +162,14 @@ public class Maze {
         return maze;
     }
     public void setMaze(int[][] e){
+
         this.maze = e;
     }
     public void addGoal(Loc start, Loc end){
         maze[start.y][start.x] = 2;
         maze[end.y][end.x] = 3;
+        rawMaze[start.y][start.x] = 2;
+        rawMaze[end.y][end.x] = 3;
         this.start = start;
         this.end = end;
     }

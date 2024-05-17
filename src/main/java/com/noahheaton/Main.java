@@ -15,7 +15,21 @@ public class Main {
         Solve sol = new Solve(maze, maze.getStart(), maze.getEnd());
         sol.bfs(maze.getStart(), maze.getEnd(), new boolean[size][size]);
         sol.setMaze();
-        System.out.println("SYMBOLIC MAZE\n" + maze.getFancyMaze());
+        System.out.println("SYMBOLIC MAZE\n" + maze.getUnsolvedFancyMaze());
+
+
+
+        do {
+            System.out.println("Enter 'y' to see the solved maze or 'n' to exit: ");
+            input = kb.next();
+            if (input.equalsIgnoreCase("y")) {
+                System.out.println("SOLVED MAZE\n" + maze.getFancyMaze());
+            }
+        } while (!input.equalsIgnoreCase("y") && !input.equalsIgnoreCase("n"));
+
+
+
+
 
         System.out.println("Enter 'y' to redo or 'n' to exit: ");
         input = kb.next();

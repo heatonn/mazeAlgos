@@ -30,24 +30,25 @@ public class Solve {
 
         while (!q.isEmpty()) {
             Loc current = q.poll();
-
-            // check neighbors
-            for (Loc neighbor : maze.findNeighbors(current)) {
-    if (!visited[neighbor.y][neighbor.x] && (maze.getMaze()[neighbor.y][neighbor.x] == 1 || maze.getMaze()[neighbor.y][neighbor.x] == 3)) {
-        q.offer(neighbor);
-        // Skip if neighbor is the end location
-        if (!neighbor.equals(end)) {
-            mazeArr[neighbor.y][neighbor.x] = 5; // mark as visited
-        }
-        visited[neighbor.y][neighbor.x] = true;
-        parent.put(neighbor, current); // store parent
-    }
-}
             if (current.equals(end)) {
 
                 highlightPath(current);
                 return true;
             }
+
+            // check neighbors
+            for (Loc neighbor : maze.findNeighbors(current)) {
+                if (!visited[neighbor.y][neighbor.x] && (maze.getMaze()[neighbor.y][neighbor.x] == 1 || maze.getMaze()[neighbor.y][neighbor.x] == 3)) {
+                q.offer(neighbor);
+        // Skip if neighbor is the end location
+                if (!neighbor.equals(end)) {
+                 mazeArr[neighbor.y][neighbor.x] = 5; // mark as visited
+              }
+        visited[neighbor.y][neighbor.x] = true;
+        parent.put(neighbor, current); // store parent
+    }
+}
+
         }
 
         return false;
