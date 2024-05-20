@@ -28,6 +28,9 @@ public class Maze {
         this.rawMaze = new int[dim][dim];
 
     }
+    public int[][] getRawMaze(){
+        return rawMaze;
+    }
     @SuppressWarnings("unused")
     public void printMaze(){System.out.println(Arrays.deepToString(maze));}
     public void generateMaze(){
@@ -133,7 +136,7 @@ public class Maze {
         }
         return gar.toString();
     }
-    public String getFancyMaze() {
+    public String getFancyMaze(int[][] maze) {
         StringBuilder gar = new StringBuilder();
         for (int[] i : maze) {
             gar.append("| ");
