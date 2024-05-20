@@ -11,11 +11,13 @@ public class Main {
         int size = kb.nextInt();
         Maze maze = new Maze(size);
         maze.generateMaze();
-
+        Maze a = maze;
         Solve sol = new Solve(maze, maze.getStart(), maze.getEnd());
-        sol.dfs(maze.getStart(), maze.getEnd(), new boolean[size][size]);
-        sol.setMaze();
-        System.out.println("SYMBOLIC MAZE\n" + maze.getUnsolvedMaze());
+        sol.bfs(maze, maze.getStart(), maze.getEnd(), new boolean[size][size]);
+
+        //sol.setMaze(true);
+
+        System.out.println("SYMBOLIC MAZE\n" + maze.getUnsolvedFancyMaze());
 
 
 
@@ -23,9 +25,18 @@ public class Main {
             System.out.println("Enter 'y' to see the solved maze or 'n' to exit: ");
             input = kb.next();
             if (input.equalsIgnoreCase("y")) {
-                System.out.println("SOLVED MAZE\n" + maze.getFancyMaze());
-                System.out.println("Moves: " + sol.getMoves() + "\n");
+
+                maze.setMaze(sol.getBfsMaze());
+                System.out.println("SOLVED BFS MAZE\n" + maze.getFancyMaze(sol.getBfsMaze()));
+                maze.setMaze(sol.getDfsMaze());
+                //sol.setMaze(false);
+                sol.dfs(a, maze.getStart(), maze.getEnd(), new boolean[size][size]);
+
+                System.out.println("SOLVED DFS MAZE\n" + maze.getFancyMaze(sol.getDfsMaze()));
+                System.out.println("BFS: " + sol.getBfsCount() + " DFS: " + sol.getDfsCount() + "\n");
+                System.out.println(sol.getMoves());
             }
+
         } while (!input.equalsIgnoreCase("y") && !input.equalsIgnoreCase("n"));
 
 

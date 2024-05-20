@@ -4,7 +4,10 @@ import java.util.*;
 
 public class Solve {
     private Maze maze;
-    private int[][] mazeArr;
+    private int bfsCount;
+    private int dfsCount;
+    private int[][] bfsMazeArr;
+    private int[][] dfsMazeArr;
     private Loc start;
     private Loc end;
     private boolean[][] visited;
@@ -13,21 +16,28 @@ public class Solve {
 
     public Solve(Maze maze, Loc start, Loc end) {
         this.maze = maze;
-        mazeArr = maze.getMaze();
+        bfsMazeArr = maze.getMaze();
+        dfsMazeArr = maze.getMaze();
         this.start = start;
         this.end = end;
         this.visited = new boolean[maze.getMaze().length][maze.getMaze().length];
         this.parent = new HashMap<>();
         moves = 0;
+        bfsCount = 0;
+        dfsCount = 0;
     }
     public int getMoves(){
         return moves;
     }
-    public void setMaze() {
-        maze.setMaze(mazeArr);
-    }
+    /*public void setMaze(boolean a) {
+         if (a) {
+             maze.setMaze(bfsMazeArr);
+         } else {
+             maze.setMaze(dfsMazeArr);
+         }
+    }*/
 
-    public boolean bfs(Loc start, Loc end, boolean[][] visited) {
+    public boolean bfs(Maze maze, Loc start, Loc end, boolean[][] visited) {
         Queue<Loc> q = new LinkedList<>();
         q.offer(start);
         visited[start.y][start.x] = true;
@@ -47,8 +57,9 @@ public class Solve {
                 q.offer(neighbor);
         // Skip if neighbor is the end location
                 if (!neighbor.equals(end)) {
-                 mazeArr[neighbor.y][neighbor.x] = 5; // mark as visited
+                 bfsMazeArr[neighbor.y][neighbor.x] = 5; // mark as visited
                     moves++;
+                    bfsCount++;
               }
         visited[neighbor.y][neighbor.x] = true;
         parent.put(neighbor, current); // store parent
@@ -58,7 +69,7 @@ public class Solve {
         return false;
     }
 
-    public boolean dfs(Loc start, Loc end, boolean[][] visited) {
+    public boolean dfs(Maze maze, Loc start, Loc end, boolean[][] visited) {
         Stack<Loc> q = new Stack<>();
         q.push(start);
         visited[start.y][start.x] = true;
@@ -78,8 +89,9 @@ public class Solve {
                     q.push(neighbor);
                     // Skip if neighbor is the end location
                     if (!neighbor.equals(end)) {
-                        mazeArr[neighbor.y][neighbor.x] = 5;
+                        dfsMazeArr[neighbor.y][neighbor.x] = 5;
                         moves++;
+                        dfsCount++;
                         // mark as visited
                     }
                     visited[neighbor.y][neighbor.x] = true;
@@ -89,6 +101,24 @@ public class Solve {
         }
         return false;
     }
+    public void bfsCounterReset(){
+        bfsCount = 0;
+    }
+    public int[][] getBfsMaze(){
+        return bfsMazeArr;
+    }
+    public int[][] getDfsMaze(){
+        return dfsMazeArr;
+    }
+    public void dfsCounterReset(){
+        dfsCount = 0;
+    }
+    public int getBfsCount(){
+        return bfsCount;
+    }
+    public int getDfsCount(){
+        return dfsCount;
+    }
 
     private void highlightPath(Loc end) {
     Loc current = end;
@@ -97,7 +127,7 @@ public class Solve {
         current = parent.get(current);
     }
     while (current != null && !current.equals(start)) {
-        mazeArr[current.y][current.x] = 6; // mark as part of the solution
+        bfsMazeArr[current.y][current.x] = 6; // mark as part of the solution
         current = parent.get(current);
     }
 }
