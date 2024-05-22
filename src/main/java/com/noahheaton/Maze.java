@@ -140,6 +140,7 @@ public class Maze {
         return gar.toString();
     }
     public String getFancyMaze(int[][] maze) {
+        int count = 0;
         StringBuilder gar = new StringBuilder();
         for (int[] i : maze) {
             gar.append("| ");
@@ -153,6 +154,7 @@ public class Maze {
                 } else if (j == 5) {
                     gar.append(ConsoleColors.PURPLE + "X" + ConsoleColors.RED + " "); // Add an extra space after colored 'X'
                 } else if (j == 6) {
+                    count++;
                     gar.append(ConsoleColors.GREEN + "X" + ConsoleColors.RED + " "); // Add an extra space after colored 'X'
                 } else {
                     gar.append("  "); // Add two spaces for empty cells
@@ -160,6 +162,7 @@ public class Maze {
             }
             gar.append("|\n"); // Add a space before the vertical bar
         }
+        gar.append("\nLength of solution: " + count);
         return gar.toString();
     }
     public int[][] getMaze(){
