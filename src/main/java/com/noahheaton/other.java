@@ -3,23 +3,28 @@ import java.util.Scanner;
 public class other {
     public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
-        System.out.print(ConsoleColors.RED + "Enter the size of the maze (anything above 50 might look weird): ");
-        int size = kb.nextInt();
-        Maze maze = new Maze(size);
-        maze.generateMaze();
-        int[][] a = maze.getRawMaze();
+        String input = "";
+        Maze mainMaze = new Maze(20);
+        mainMaze.generateMaze();
+        int[][] mazeArr = mainMaze.getRawMaze();
+        do {
+            //System.out.print("Enter the size of the maze (anything above 50 might look weird): ");
+            int size = 20;//kb.nextInt();
+            // Create THE maze
+            Maze maze = new Maze(size);
+            maze.setMaze(mazeArr);
 
-        Solve sol = new Solve(maze, maze.getStart(), maze.getEnd());
-        sol.bfs(maze, maze.getStart(), maze.getEnd(), new boolean[size][size]);
-        System.out.println(maze.getFancyMaze(maze.getMaze()));
 
-        Maze b = new Maze(size);
+            Solve sol = new Solve(maze, maze.getStart(), maze.getEnd());
+            sol.dfs(maze, mainMaze.getStart(), mainMaze.getEnd(), new boolean[size][size]);
 
-        b.setMaze(a);
-        Solve sol2 = new Solve(b, maze.getStart(), maze.getEnd());
-        sol2.dfs(b, maze.getStart(), maze.getEnd(), new boolean[size][size]);
-        System.out.println(b.getFancyMaze(b.getMaze()));
-        System.out.println("BFS: " + sol.getBfsCount() + " DFS: " + sol2.getDfsCount() + "\n");
 
+            System.out.println(maze.getFancyMaze(maze.getMaze()));
+            //System.out.println(maze2.getFancyMaze(maze2.getMaze()));
+            System.out.println("DFS: " + sol.getDfsCount() + "\n");
+            sol.resetDfsCount();
+            System.out.println("Again? (y/n): ");
+            input = kb.next();
+        } while (input.equalsIgnoreCase("y"));
     }
 }

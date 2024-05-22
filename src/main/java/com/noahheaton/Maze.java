@@ -75,6 +75,9 @@ public class Maze {
         return neighbors;
     }
 
+
+
+
     private boolean isNotCorner(Loc loc, int x, int y){
         return (loc.x == x || loc.y == y);
     }

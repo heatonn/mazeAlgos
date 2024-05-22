@@ -119,7 +119,12 @@ public class Solve {
     public int getDfsCount(){
         return dfsCount;
     }
-
+    public void resetBfsCount(){
+        bfsCount = 0;
+    }
+    public void resetDfsCount(){
+        dfsCount = 0;
+    }
     private void highlightPath(Loc end) {
     Loc current = end;
     // Skip if current is the end location

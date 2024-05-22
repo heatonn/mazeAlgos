@@ -6,7 +6,7 @@ public class otherother {
         String input = "";
         do {
             //System.out.print("Enter the size of the maze (anything above 50 might look weird): ");
-            int size = 100;//kb.nextInt();
+            int size = 20;//kb.nextInt();
             // Create THE maze
             Maze maze = new Maze(size);
             maze.generateMaze();
