@@ -1,9 +1,6 @@
 package com.noahheaton;
 
-import java.util.ArrayList;
-import java.util.Stack;
-import java.util.Random;
-import java.util.Arrays;
+import java.util.*;
 
 @SuppressWarnings("ALL")
 public class Maze {
@@ -41,7 +38,7 @@ public class Maze {
 
                 maze[next.y][next.x] = 1;
                 rawMaze[next.y][next.x] = 1;
-                ArrayList<Loc> neighbors = findNeighbors(next);
+                ArrayList<Loc> neighbors = (ArrayList<Loc>) findNeighbors(next);
                 rndmLocAdd(neighbors);
             }
         }
@@ -65,7 +62,7 @@ public class Maze {
         return (numNeighboringOnes <= 2) && maze[loc.y][loc.x] == 0;
     }
 
-    public ArrayList<Loc> findNeighbors(Loc loc){
+    public List<Loc> findNeighbors(Loc loc){
         ArrayList<Loc> neighbors = new ArrayList<Loc>();
         for(int y = loc.y-1; y <= loc.y+1; y++ ){
             for(int x = loc.x-1; x <= loc.x+1; x++){
