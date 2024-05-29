@@ -11,6 +11,7 @@ public class Maze {
     private Stack<Loc> stack = new Stack<>();
     private Loc start;
     private Loc end;
+    private int count;
 
     /*
      * █ (Wall)
@@ -20,6 +21,7 @@ public class Maze {
      *
      */
     public Maze(int dim) {
+        count = 0;
         this.dim = dim;
         this.maze = new int[dim][dim];
         this.rawMaze = new int[dim][dim];
@@ -160,7 +162,14 @@ public class Maze {
             gar.append("|\n"); // Add a space before the vertical bar
         }
         gar.append("\nLength of solution: " + count);
+        setCount(count);
         return gar.toString();
+    }
+    public void setCount(int count){
+        this.count = count;
+    }
+    public int getCount(){
+        return count;
     }
     public int[][] getMaze(){
         return maze;
