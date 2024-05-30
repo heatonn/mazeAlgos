@@ -1,13 +1,14 @@
-package com.noahheaton;
-import com.noahheaton.menus.CSVFilesOutput;
-import com.noahheaton.menus.mainSolve;
-import java.util.Scanner;
+package com.noahheaton.menus;
 
+import com.noahheaton.Maze;
+import com.noahheaton.Solve;
+import java.util.Scanner;
 import java.io.FileNotFoundException;
 
-public class Mainmain {
+public class ScreenSaver {
     private static int speed;
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void run(int size, int speed) throws FileNotFoundException {
+        setSpeed(speed);
 
         //Sleep one second
         try {
@@ -15,13 +16,6 @@ public class Mainmain {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-
-        //mainSolve.run();
-        //CSVFilesOutput.run();
-        int size = Integer.parseInt(args[0]);
-        setSpeed(Integer.parseInt(args[1]));
-        //int turns = Integer.parseInt(args[2]);
-        Scanner kb = new Scanner(System.in);
         while (true) {
 
 

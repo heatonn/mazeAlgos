@@ -1,5 +1,7 @@
 package com.noahheaton;
 
+import com.noahheaton.menus.ScreenSaver;
+
 import java.util.*;
 
 public class Solve {
@@ -68,7 +70,75 @@ public class Solve {
         }
         return false;
     }
+   public boolean stepBfs(Maze maze, Loc start, Loc end, boolean[][] visited) {
+    Queue<Loc> q = new LinkedList<>();
+    q.offer(start);
+    visited[start.y][start.x] = true;
 
+    while (!q.isEmpty()) {
+        Loc current = q.poll();
+        if (current.equals(end)) {
+            highlightPath(current);
+            return true;
+        }
+
+        // check neighbors
+        for (Loc neighbor : maze.findNeighbors(current)) {
+            if (!visited[neighbor.y][neighbor.x] && (maze.getMaze()[neighbor.y][neighbor.x] == 1 || maze.getMaze()[neighbor.y][neighbor.x] == 3)) {
+                q.offer(neighbor);
+                // Skip if neighbor is the end location
+                if (!neighbor.equals(end)) {
+                    bfsMazeArr[neighbor.y][neighbor.x] = 5; // mark as visited
+                    moves++;
+                    bfsCount++;
+
+                    // Print the maze after every move
+                    System.out.println(maze.getFancyMaze(bfsMazeArr));
+                    slep(ScreenSaver.getSpeed());
+
+                }
+                visited[neighbor.y][neighbor.x] = true;
+                parent.put(neighbor, current); // store parent
+            }
+        }
+    }
+    return false;
+}
+public boolean stepDfs(Maze maze, Loc start, Loc end, boolean[][] visited) {
+    Stack<Loc> q = new Stack<>();
+    q.push(start);
+    visited[start.y][start.x] = true;
+
+    while (!q.isEmpty()) {
+        Loc current = q.pop();
+        if (current.equals(end)) {
+            highlightPath(current);
+            return true;
+        }
+
+        // check neighbors
+        for (Loc neighbor : maze.findNeighbors(current)) {
+            if (!visited[neighbor.y][neighbor.x] && (maze.getMaze()[neighbor.y][neighbor.x] == 1 || maze.getMaze()[neighbor.y][neighbor.x] == 3)) {
+                q.push(neighbor);
+                // Skip if neighbor is the end location
+                if (!neighbor.equals(end)) {
+                    dfsMazeArr[neighbor.y][neighbor.x] = 5;
+                    moves++;
+                    dfsCount++;
+                    // mark as visited
+                    System.out.println(maze.getFancyMaze(dfsMazeArr));
+                    slep(ScreenSaver.getSpeed());
+                }
+                visited[neighbor.y][neighbor.x] = true;
+                parent.put(neighbor, current); // store parent
+
+                // Print the maze after every move
+
+            }
+        }
+    }
+    return false;
+}
     public boolean dfs(Maze maze, Loc start, Loc end, boolean[][] visited) {
         Stack<Loc> q = new Stack<>();
         q.push(start);
@@ -136,4 +206,11 @@ public class Solve {
         current = parent.get(current);
     }
 }
+    public static void slep(int milis) {
+        try {
+            Thread.sleep(milis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

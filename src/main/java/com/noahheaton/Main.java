@@ -1,50 +1,62 @@
 package com.noahheaton;
+import com.noahheaton.menus.*;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
     Scanner kb = new Scanner(System.in);
-    String input;
+    int option = firstGUI();
+    switch (option) {
+        case 1:
+            mainSolve.run();
+            break;
+        case 2:
+            System.out.print("Size of maze: ");
+            int size = kb.nextInt();
+            System.out.print("Speed of animation (~10ms is good): ");
+            int speed = kb.nextInt();
+            ScreenSaver.run(size, speed);
+            break;
+        case 3:
+            CSVFilesOutput.run();
+            break;
 
-    do {
-        System.out.print(ConsoleColors.RED + "Enter the size of the maze (anything above 50 might look weird): ");
-        int size = kb.nextInt();
-        Maze maze = new Maze(size);
-        maze.generateMaze();
-        Maze a = maze;
-        Solve sol = new Solve(maze, maze.getStart(), maze.getEnd());
-        sol.bfs(maze, maze.getStart(), maze.getEnd(), new boolean[size][size]);
 
-        //sol.setMaze(true);
+    }
 
-        System.out.println("SYMBOLIC MAZE\n" + maze.getUnsolvedFancyMaze());
+    }
+
+    public static int firstGUI() {
+        System.out.println("Welcome to the maze demo!\nPlease select an option:");
+        System.out.println("1. Run the " + ConsoleColors.RED_BOLD_BRIGHT + "NORMAL"+ ConsoleColors.RESET + " maze solver");
+        System.out.println("2. Run the " + ConsoleColors.RED_BOLD_BRIGHT + "ANIMATED"+ ConsoleColors.RESET + " maze solver");
+        System.out.println("3. Run the " + ConsoleColors.RED_BOLD_BRIGHT + "DATA OUTPUT"+ ConsoleColors.RESET + " maze solver");
+
+        Scanner kb = new Scanner(System.in);
+        int choice = kb.nextInt();
+        while (choice < 1 || choice > 3) {
+            System.out.println("Invalid choice. Please select an option:");
+            choice = kb.nextInt();
 
 
-
-        do {
-            System.out.println("Enter 'y' to see the solved maze or 'n' to exit: ");
-            input = kb.next();
-            if (input.equalsIgnoreCase("y")) {
-
-                maze.setMaze(sol.getBfsMaze());
-                System.out.println("SOLVED BFS MAZE\n" + maze.getFancyMaze(sol.getBfsMaze()));
-                maze.setMaze(sol.getDfsMaze());
-                //sol.setMaze(false);
-                sol.dfs(a, maze.getStart(), maze.getEnd(), new boolean[size][size]);
-
-                System.out.println("SOLVED DFS MAZE\n" + maze.getFancyMaze(sol.getDfsMaze()));
-                System.out.println("BFS: " + sol.getBfsCount() + " DFS: " + sol.getDfsCount() + "\n");
-                System.out.println(sol.getMoves());
             }
+        switch (choice) {
+            case 1:
+                System.out.println("\nYou have chosen the " + ConsoleColors.RED_BOLD_BRIGHT + "NORMAL" + ConsoleColors.RESET + " maze solver");
+                break;
+            case 2:
+                System.out.println("\nYou have chosen the " + ConsoleColors.RED_BOLD_BRIGHT + "ANIMATED" + ConsoleColors.RESET + " maze solver");
+                break;
+            case 3:
+                System.out.println("\nYou have chosen the " + ConsoleColors.RED_BOLD_BRIGHT + "DATA OUTPUT" + ConsoleColors.RESET + " maze solver");
+                break;
 
-        } while (!input.equalsIgnoreCase("y") && !input.equalsIgnoreCase("n"));
+        }
+        return choice;
+    }
 
 
 
 
-
-        System.out.println("Enter 'y' to redo or 'n' to exit: ");
-        input = kb.next();
-    } while(input.equalsIgnoreCase("y"));
-}
 }
