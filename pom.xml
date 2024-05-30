@@ -14,6 +14,21 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <!-- JavaFX -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>17</version>
+        </dependency>
+        <!-- Add other JavaFX dependencies you need -->
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -25,11 +40,12 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.noahheaton.Mainmain</mainClass>
+                            <mainClass>com.noahheaton.Main</mainClass> <!-- Corrected main class name -->
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
+            <!-- Configure maven-compiler-plugin to compile JavaFX -->
         </plugins>
     </build>
 

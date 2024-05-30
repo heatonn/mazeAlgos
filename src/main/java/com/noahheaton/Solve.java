@@ -1,5 +1,7 @@
 package com.noahheaton;
 
+import com.noahheaton.menus.ScreenSaver;
+
 import java.util.*;
 
 public class Solve {
@@ -92,7 +94,7 @@ public class Solve {
 
                     // Print the maze after every move
                     System.out.println(maze.getFancyMaze(bfsMazeArr));
-                    slep(Mainmain.getSpeed());
+                    slep(ScreenSaver.getSpeed());
 
                 }
                 visited[neighbor.y][neighbor.x] = true;
@@ -125,7 +127,7 @@ public boolean stepDfs(Maze maze, Loc start, Loc end, boolean[][] visited) {
                     dfsCount++;
                     // mark as visited
                     System.out.println(maze.getFancyMaze(dfsMazeArr));
-                    slep(Mainmain.getSpeed());
+                    slep(ScreenSaver.getSpeed());
                 }
                 visited[neighbor.y][neighbor.x] = true;
                 parent.put(neighbor, current); // store parent
