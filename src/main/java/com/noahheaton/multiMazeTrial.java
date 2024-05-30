@@ -8,7 +8,7 @@ public class multiMazeTrial {
         PrintWriter w = new PrintWriter("output.csv");
         w.println("trial,size,bfs,dfs");
         for (int size = 20; size <= 500; size += 20) {
-            System.out.println(size);            for (int trial = 1; trial <= 1000; trial++) {
+            System.out.println(size);            for (int trial = 1; trial <= 1000000000; trial++) {
                 // Create THE maze
                 Maze maze = new Maze(size);
                 maze.generateMaze();

@@ -26,7 +26,7 @@ public class murti {
 
         for (int size = 20; size <= 500; size += 20) {
             System.out.println("Working on size: " + size);
-            for (int trial = 1; trial <= 10000; trial++) {
+            for (int trial = 1; trial <= 10000000; trial++) {
                 // Create a new task and submit it to the thread pool
                 Runnable task = new MazeTask(trial, size);
                 executorService.execute(task);

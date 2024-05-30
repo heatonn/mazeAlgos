@@ -94,7 +94,11 @@ public class Solve {
 
                     // Print the maze after every move
                     System.out.println(maze.getFancyMaze(bfsMazeArr));
+                    if (ScreenSaver.getSpeed() != 0)
                     slep(ScreenSaver.getSpeed());
+                    else {
+                        slep(20);
+                    }
 
                 }
                 visited[neighbor.y][neighbor.x] = true;

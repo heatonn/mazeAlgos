@@ -15,8 +15,10 @@ public class mainSolve {
 
             // Create maze
             Maze maze = new Maze(size);
+
             maze.generateMaze();
             int[][] mazeArr = maze.getRawMaze();
+            System.out.println(maze.getUnsolvedMaze());
             // Create second maze object
             Maze maze2 = new Maze(size);
             // Maze it the exact same as the first one

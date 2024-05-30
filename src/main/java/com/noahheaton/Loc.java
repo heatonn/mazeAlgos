@@ -5,7 +5,7 @@ public class Loc {
     public int y;
     public int g, h;
     public Loc parent;// g = distance from start, h = heuristic from current node to end
-    Loc(int x, int y) {
+    public Loc(int x, int y) {
         this.x = x;
         this.y = y;
     }
