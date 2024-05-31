@@ -77,7 +77,7 @@ public class aStarTrack {
     }
 
     private static boolean isWalkable(int[][] maze, int x, int y) {
-        return isInBounds(maze, x, y) && maze[x][y] == 0;
+        return isInBounds(maze, x, y) && maze[x][y] == 1;
     }
 
     private static boolean isInBounds(int[][] maze, int x, int y) {
@@ -89,7 +89,7 @@ public class aStarTrack {
 
         for (int x = 0; x < maze.length; x++) {
             for (int y = 0; y < maze[0].length; y++) {
-                if (maze[x][y] == 1) {
+                if (maze[x][y] == 0) {
                     mazePrint[x][y] = 'X';
                 } else {
                     mazePrint[x][y] = ' ';
@@ -117,54 +117,32 @@ public class aStarTrack {
         // Print the current state of the maze
         for (int x = 0; x < mazePrint.length; x++) {
             for (int y = 0; y < mazePrint[0].length; y++) {
-                System.out.print(mazePrint[x][y]);
+                System.out.print(mazePrint[x][y] + " ");
             }
             System.out.println();
         }
 
         // Delay to show the animation
         try {
-            Thread.sleep(300); // Adjust the delay as needed
+            Thread.sleep(100); // Adjust the delay as needed
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
     }
 
     public static void main(String[] args) {
-        /*int[][] maze = {
-                {0, 1, 0, 0, 0, 0},
-                {0, 1, 0, 1, 1, 0},
-                {0, 0, 0, 0, 1, 0},
-                {0, 1, 1, 0, 1, 0},
-                {0, 0, 0, 0, 0, 0}
-        }; */
         Maze m = new Maze(20);
         m.generateMaze();
-        //System.out.println(m.getUnsolvedFancyMaze());
         int[][] maze = m.getRawMaze();
-         /* for (int r = 0; r < maze.length; r++) {
-            for (int c = 0; c < maze[0].length; c++) {
-                if (maze[r][c] == 1) {
-                    maze[r][c] = 0;
-                } else if (maze[r][c] == 0){
-                    maze[r][c] = 1;
-                }
-            }
-            System.out.println();
-        }  */
 
         System.out.println(m.getUnsolvedFancyMaze());
-        //Node start = new Node(0, 0);
-        //Node end = new Node(4, 5);
+
         Node start = new Node(m.getStart().getCol(), m.getStart().getRow());
         Node end = new Node(m.getEnd().getCol(), m.getEnd().getRow());
         List<Node> path = findPath(maze, start, end);
 
         if (!path.isEmpty()) {
             System.out.println("Path found:");
-            //for (Node node : path) {
-            //    System.out.println("(" + node.x + ", " + node.y + ")");
-           // }
         } else {
             System.out.println("No path found.");
         }
