@@ -2,15 +2,18 @@ package com.noahheaton.aStar;
 
 import com.noahheaton.Loc;
 
-public class aStarMain {
-    public static class Node extends Loc {
+public class Node extends Loc {
         public int gCost; // Cost from start to current node
         public int hCost; // Heuristic cost to goal
         public int fCost; // gCost + hCost
         public Node parent;
+        public int x;
+        public int y;
 
-        public Node(int row, int col) {
-            super(row, col);
+        public Node(int col, int row) {
+            super(col, row);
+            this.x = col;
+            this.y = row;
             this.gCost = 0;
             this.hCost = 0;
             this.fCost = 0;
@@ -22,4 +25,3 @@ public class aStarMain {
             this.fCost = this.gCost + this.hCost;
         }
     }
-}
