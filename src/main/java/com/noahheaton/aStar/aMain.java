@@ -1,7 +1,7 @@
 package com.noahheaton.aStar;
 
 import java.util.List;
-import static com.noahheaton.aStar.aStar.findPath;
+import static com.noahheaton.aStar.aStarTrack.findPath;
 
 public class aMain {
     public static void main(String[] args) {
@@ -14,8 +14,8 @@ public class aMain {
         };
 
         Node start = new Node(0, 0);
-        Node goal = new Node(4, 5);
-        List<Node> path = findPath(maze, start, goal);
+        Node end = new Node(5, 4);
+        List<Node> path = findPath(maze, start, end);
 
         if (!path.isEmpty()) {
             System.out.println("Path found:");
@@ -27,4 +27,5 @@ public class aMain {
         }
     }
 }
+
 
