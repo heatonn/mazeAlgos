@@ -14,9 +14,9 @@ public class Main {
         case 2:
             System.out.print("Size of maze: ");
             int size = kb.nextInt();
-            System.out.print("Speed of animation (~10ms is good): ");
-            int speed = kb.nextInt();
-            ScreenSaver.run(size, speed);
+            //System.out.print("Speed of animation (~10ms is good): ");
+            //int speed = kb.nextInt();
+            ScreenSaver.run(size, 10);
             break;
         case 3:
             CSVFilesOutput.run();

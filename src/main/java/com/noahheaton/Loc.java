@@ -5,7 +5,7 @@ public class Loc {
     public int y;
     public int g, h;
     public Loc parent;// g = distance from start, h = heuristic from current node to end
-    Loc(int x, int y) {
+    public Loc(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -19,7 +19,18 @@ public class Loc {
     int calculateHeuristic(Loc endNode) {
         return Math.abs(endNode.x - x) + Math.abs(endNode.y - y);
     }
-
+    public int getRow() {
+        return x;
+    }
+    public int getCol() {
+        return y;
+    }
+    public void setRow(int row) {
+        this.x = row;
+    }
+    public void setCol(int col) {
+        this.y = col;
+    }
 
     public boolean equals(Loc obj){
         if (obj instanceof Loc) {
