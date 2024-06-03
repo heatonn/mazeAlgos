@@ -1,5 +1,6 @@
 package com.noahheaton.aStar;
 
+import com.noahheaton.ConsoleColors;
 import com.noahheaton.Maze;
 
 import java.util.*;
@@ -119,13 +120,19 @@ public class aStarTrack {
 
         // Print the current state of the maze
         for (int x = 0; x < mazePrint.length; x++) {
+            System.out.print("| "); // Start of the line with a space
             for (int y = 0; y < mazePrint[0].length; y++) {
-                System.out.print(mazePrint[x][y] + " ");
+                if (mazePrint[x][y] == '*') {
+                    System.out.print(ConsoleColors.PURPLE + "*" + ConsoleColors.RED + " ");
+                } else if (mazePrint[x][y] == 'O') {
+                    System.out.print(ConsoleColors.GREEN + "O" + ConsoleColors.RED + " ");
+                } else {
+                    System.out.print(mazePrint[x][y] + " ");
+                }
             }
-            System.out.println();
+            System.out.println(" |"); // End of the line with a space
         }
         System.out.println("\n\n\n");
-
 
         // Delay to show the animation
         try {
@@ -134,6 +141,7 @@ public class aStarTrack {
             Thread.currentThread().interrupt();
         }
     }
+
 
     public static void main(String[] args) {
         Maze m = new Maze(20);
