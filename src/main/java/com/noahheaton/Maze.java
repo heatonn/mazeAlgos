@@ -3,7 +3,7 @@ package com.noahheaton;
 import java.util.*;
 
 @SuppressWarnings("ALL")
-public class Maze {
+public class Maze implements Cloneable {
     private int dim;
     private int[][] maze;
     private int[][] rawMaze;
@@ -26,6 +26,25 @@ public class Maze {
         this.maze = new int[dim][dim];
         this.rawMaze = new int[dim][dim];
 
+    }
+    @Override
+    public Maze clone() {
+        try {
+            Maze cloned = (Maze) super.clone();
+            // If there are any fields that are arrays or mutable objects,
+            // you need to clone them here as well.
+            // For example, if maze is an array:
+            cloned.maze = this.maze.clone();
+            // If rawMaze is an array:
+            cloned.rawMaze = this.rawMaze.clone();
+            // If start and end are mutable objects:
+            cloned.start = new Loc(this.start.x, this.start.y);
+            cloned.end = new Loc(this.end.x, this.end.y);
+            // Do this for all fields that need to be deep copied
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Cloning not supported", e);
+        }
     }
     public int[][] getRawMaze(){
         return rawMaze;
@@ -120,6 +139,8 @@ public class Maze {
     public String getSolvedMaze() {
         StringBuilder gar = new StringBuilder();
         for (int[] i : maze) {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             gar.append("| ");
             for (int j : i) {
                 if (j == 0) {
@@ -142,6 +163,9 @@ public class Maze {
         int count = 0;
         StringBuilder gar = new StringBuilder();
         for (int[] i : maze) {
+            // clear console
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             gar.append("| ");
             for (int j : i) {
                 if (j == 0) {

@@ -1,5 +1,7 @@
 package com.noahheaton.aStar;
 
+import com.noahheaton.Loc;
+
 import java.util.Objects;
 
 public class Node {
@@ -14,6 +16,14 @@ public class Node {
         this.x = x;
         this.y = y;
         this.gCost = Integer.MAX_VALUE; // Start with a high value
+        this.hCost = 0;
+        this.fCost = 0;
+        this.parent = null;
+    }
+    public Node (Loc l){
+        this.x = l.getY();
+        this.y = l.getX();
+        this.gCost = Integer.MAX_VALUE;
         this.hCost = 0;
         this.fCost = 0;
         this.parent = null;

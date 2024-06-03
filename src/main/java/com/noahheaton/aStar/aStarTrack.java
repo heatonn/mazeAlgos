@@ -7,7 +7,8 @@ import java.util.*;
 
 public class aStarTrack {
     private static final int[][] DIRECTIONS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // Right, Down, Left, Up
-
+    private static int moves = 0;
+    private static int solution = 0;
     public static List<Node> findPath(int[][] maze, Node start, Node end) {
         if (!isInBounds(maze, start.x, start.y) || !isInBounds(maze, end.x, end.y)) {
             System.out.println("Start or end node is out of maze bounds.");
@@ -26,6 +27,7 @@ public class aStarTrack {
 
         while (!openList.isEmpty()) {
             Node currentNode = openList.poll();
+            moves++;
             if (currentNode.equals(end)) {
                 List<Node> path = constructPath(currentNode);
                 animateMaze(maze, closedList, path, start, end);
@@ -68,7 +70,9 @@ public class aStarTrack {
         while (node != null) {
             path.add(node);
             node = node.parent;
+
         }
+        solution = path.size();
         Collections.reverse(path);
         return path;
     }
@@ -142,6 +146,13 @@ public class aStarTrack {
         }
     }
 
+    public static int getSolution() {
+        return solution;
+    }
+
+    public static int getMoves() {
+        return moves;
+    }
 
     public static void main(String[] args) {
         Maze m = new Maze(20);
@@ -160,6 +171,7 @@ public class aStarTrack {
             System.out.println("No path found.");
         }
     }
+
 
 
 
