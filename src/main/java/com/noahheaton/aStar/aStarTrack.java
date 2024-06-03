@@ -76,8 +76,11 @@ public class aStarTrack {
         return Math.abs(node.x - goal.x) + Math.abs(node.y - goal.y); // Manhattan distance
     }
 
-    private static boolean isWalkable(int[][] maze, int x, int y) {
+    /*private static boolean isWalkable(int[][] maze, int x, int y) {
         return isInBounds(maze, x, y) && maze[x][y] == 1;
+    } */
+    private static boolean isWalkable(int[][] maze, int x, int y) {
+        return isInBounds(maze, x, y) && (maze[x][y] == 1 || maze[x][y] == 2 || maze[x][y] == 3);
     }
 
     private static boolean isInBounds(int[][] maze, int x, int y) {
@@ -121,6 +124,8 @@ public class aStarTrack {
             }
             System.out.println();
         }
+        System.out.println("\n\n\n");
+
 
         // Delay to show the animation
         try {
@@ -147,4 +152,8 @@ public class aStarTrack {
             System.out.println("No path found.");
         }
     }
+
+
+
+
 }

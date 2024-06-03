@@ -21,9 +21,10 @@ public class ScreenSaver {
 
             Maze m = new Maze(size);
             Maze e = new Maze(size);
-
+            Maze f = new Maze(size);
             m.generateMaze();
             e.setMaze(m.getRawMaze());
+
             Solve s = new Solve(m, m.getStart(), m.getEnd());
             Solve s2 = new Solve(e, m.getStart(), m.getEnd());
             s.stepBfs(m, m.getStart(), m.getEnd(), new boolean[size][size]);
@@ -39,6 +40,17 @@ public class ScreenSaver {
             }
             s2.stepDfs(e, m.getStart(), m.getEnd(), new boolean[size][size]);
             System.out.println(e.getFancyMaze(e.getMaze()));
+            // 5 second until A*
+            System.out.println("\n\nStarting A* in 5 seconds...");
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            f.setMaze(m.getRawMaze());
+            com.noahheaton.aStar.aMain.run(size);
+
+
             System.out.println("Tiles Scanned\nBFS: " + s.getBfsCount() + " DFS: " + s2.getDfsCount());
             System.out.println("Solution lengths\nBFS: " + m.getCount() + " DFS: " + e.getCount());
             // sleep 5 seconds
