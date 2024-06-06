@@ -69,7 +69,7 @@ public class ScreenSaver {
 
 
             System.out.println("Tiles Scanned\nBFS: " + s.getBfsCount() + " DFS: " + s2.getDfsCount() + " A*: " + (com.noahheaton.aStar.aStarTrack.getMoves() - 2));
-            System.out.println("Solution lengths\nBFS: " + m.getCount() + " DFS: " + e.getCount() + " A*: " + (com.noahheaton.aStar.aStarTrack.getMoves() - 2));
+            System.out.println("Solution lengths\nBFS: " + m.getCount() + " DFS: " + e.getCount() + " A*: " + (com.noahheaton.aStar.aStarTrack.getSolution() - 2));
             // sleep 5 seconds
             System.out.println("\n\nStarting again in 5 seconds...");
             try {
